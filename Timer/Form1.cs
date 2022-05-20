@@ -31,6 +31,8 @@ namespace Timer
             {
 
 
+                StopButton.Enabled = true;
+                StopButton.Visible = true;
 
                 TimerStoped = false;
                 ActiveTimer.Start();
@@ -127,8 +129,9 @@ namespace Timer
 
         private void NObutton_Click(object sender, EventArgs e)
         {
-            StartButton.Enabled = false;
-            StartButton.Visible = false;
+
+            StopButton.Enabled = false;
+            StopButton.Visible = false;
             NOButton.Enabled = false;
             StartButton.Enabled = true;
             StartButton.Visible = true;
@@ -157,7 +160,7 @@ namespace Timer
             else
             {
                 ActiveTimer.Start();
-                StopButton.Text = "Сродолжить";
+                StopButton.Text = "Стоп";
             }
             TimerStoped = !TimerStoped;
         }
