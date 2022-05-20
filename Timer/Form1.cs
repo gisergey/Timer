@@ -30,22 +30,29 @@ namespace Timer
             if (int.TryParse(textBoxHour.Text, out hours) && int.TryParse(textBoxMinute.Text, out minutes) && int.TryParse(textBoxSecond.Text, out seconds))
             {
 
+                if (minutes <= 60 && seconds <= 60)
+                {
+                    StopButton.Enabled = true;
+                    StopButton.Visible = true;
 
-                StopButton.Enabled = true;
-                StopButton.Visible = true;
+                    TimerStoped = false;
+                    ActiveTimer.Start();
+                    TimerLabelShow();
+                    StartButton.Enabled = false;
+                    StartButton.Visible = false;
+                    NOButton.Enabled = true;
 
-                TimerStoped = false;
-                ActiveTimer.Start();
-                TimerLabelShow();
-                StartButton.Enabled = false;
-                StartButton.Visible = false;
-                NOButton.Enabled = true;
-
-                SetSeoncds = hours * 3600 + minutes * 60 + seconds;
-                AllSeconds = SetSeoncds;
-                LabelHour.Text = (AllSeconds / 3600) < 10 ? "0" + (AllSeconds / 3600).ToString() : (AllSeconds / 3600).ToString();
-                LabelMinute.Text = (AllSeconds % 3600 / 60) < 10 ? "0" + (AllSeconds % 3600 / 60).ToString() : (AllSeconds % 3600 / 60).ToString();
-                LabelSecond.Text = (AllSeconds % 60) < 10 ? "0" + (AllSeconds % 60).ToString() : (AllSeconds % 60).ToString();
+                    SetSeoncds = hours * 3600 + minutes * 60 + seconds;
+                    AllSeconds = SetSeoncds;
+                    LabelHour.Text = (AllSeconds / 3600) < 10 ? "0" + (AllSeconds / 3600).ToString() : (AllSeconds / 3600).ToString();
+                    LabelMinute.Text = (AllSeconds % 3600 / 60) < 10 ? "0" + (AllSeconds % 3600 / 60).ToString() : (AllSeconds % 3600 / 60).ToString();
+                    LabelSecond.Text = (AllSeconds % 60) < 10 ? "0" + (AllSeconds % 60).ToString() : (AllSeconds % 60).ToString();
+                }
+                else
+                {
+                    MessageBox.Show("неправильные минуты и секунды введены");
+                }
+   
             }
             else
             {
